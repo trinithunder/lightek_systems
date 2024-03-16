@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Money categories</h1>
+
+<div id="money_categories">
+  <% @money_categories.each do |money_category| %>
+    <%= render money_category %>
+    <p>
+      <%= link_to "Show this money category", money_category %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New money category", new_money_category_path %>

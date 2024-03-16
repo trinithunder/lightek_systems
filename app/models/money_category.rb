@@ -1,0 +1,2 @@
+class MoneyCategory < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+module MoneyCategoriesHelper
+end
