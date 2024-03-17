@@ -1,0 +1,57 @@
+<%= form_with(model: device) do |form| %>
+  <% if device.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(device.errors.count, "error") %> prohibited this device from being saved:</h2>
+
+      <ul>
+        <% device.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :model, style: "display: block" %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div>
+    <%= form.label :system_name, style: "display: block" %>
+    <%= form.text_field :system_name %>
+  </div>
+
+  <div>
+    <%= form.label :system_version, style: "display: block" %>
+    <%= form.text_field :system_version %>
+  </div>
+
+  <div>
+    <%= form.label :identifier_for_vendor, style: "display: block" %>
+    <%= form.text_field :identifier_for_vendor %>
+  </div>
+
+  <div>
+    <%= form.label :localized_model, style: "display: block" %>
+    <%= form.text_field :localized_model %>
+  </div>
+
+  <div>
+    <%= form.label :user_interface_idiom, style: "display: block" %>
+    <%= form.text_field :user_interface_idiom %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

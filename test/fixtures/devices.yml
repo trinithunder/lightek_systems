@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  model: MyString
+  system_name: MyString
+  system_version: MyString
+  identifier_for_vendor: MyString
+  localized_model: MyString
+  user_interface_idiom: MyString
+  user: one
+
+two:
+  name: MyString
+  model: MyString
+  system_name: MyString
+  system_version: MyString
+  identifier_for_vendor: MyString
+  localized_model: MyString
+  user_interface_idiom: MyString
+  user: two

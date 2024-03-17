@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_17_005351) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_17_014310) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -47,6 +47,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_005351) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "admin_dashboards", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "answers", force: :cascade do |t|
@@ -86,6 +91,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_005351) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "dashboards", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.string "name"
+    t.string "model"
+    t.string "system_name"
+    t.string "system_version"
+    t.string "identifier_for_vendor"
+    t.string "localized_model"
+    t.string "user_interface_idiom"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_devices_on_user_id"
+  end
+
   create_table "fees", force: :cascade do |t|
     t.string "title"
     t.integer "price"
@@ -103,6 +127,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_005351) do
   create_table "follows", force: :cascade do |t|
     t.integer "follow"
     t.integer "following"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "title"
+    t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -228,8 +259,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_005351) do
     t.integer "match_id", null: false
     t.string "phone_number"
     t.integer "follows_id", null: false
+    t.integer "group_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["follows_id"], name: "index_users_on_follows_id"
+    t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["like_id"], name: "index_users_on_like_id"
     t.index ["match_id"], name: "index_users_on_match_id"
     t.index ["message_id"], name: "index_users_on_message_id"
@@ -241,6 +274,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_005351) do
   add_foreign_key "answers", "questions"
   add_foreign_key "cards", "users"
   add_foreign_key "categories", "posts"
+  add_foreign_key "devices", "users"
   add_foreign_key "fees", "users"
   add_foreign_key "homeworks", "categories"
   add_foreign_key "homeworks", "users"
@@ -250,6 +284,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_005351) do
   add_foreign_key "quizzes", "questions"
   add_foreign_key "user_calendars", "users"
   add_foreign_key "users", "follows", column: "follows_id"
+  add_foreign_key "users", "groups"
   add_foreign_key "users", "likes"
   add_foreign_key "users", "matches"
   add_foreign_key "users", "messages"
