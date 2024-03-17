@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :quizzes
+  resources :answers
+  resources :questions
+  resources :courses
+  resources :follows
   resources :money_categories
   resources :categories
   resources :products
