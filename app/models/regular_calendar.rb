@@ -1,0 +1,2 @@
+class RegularCalendar < ApplicationRecord
+end
