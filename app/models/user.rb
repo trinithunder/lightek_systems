@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :quizzes
   has_many :courses
   has_many :homework
+  has_many :interests
+  has_many :ratings
+  belongs_to :group
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
