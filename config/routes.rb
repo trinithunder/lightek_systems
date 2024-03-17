@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :interests
   resources :devices
   resources :groups
   resources :dashboards

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_17_014310) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_17_015804) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -149,6 +149,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_014310) do
     t.index ["user_id"], name: "index_homeworks_on_user_id"
   end
 
+  create_table "interests", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "to"
     t.integer "from"
@@ -260,9 +266,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_014310) do
     t.string "phone_number"
     t.integer "follows_id", null: false
     t.integer "group_id", null: false
+    t.integer "interest_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["follows_id"], name: "index_users_on_follows_id"
     t.index ["group_id"], name: "index_users_on_group_id"
+    t.index ["interest_id"], name: "index_users_on_interest_id"
     t.index ["like_id"], name: "index_users_on_like_id"
     t.index ["match_id"], name: "index_users_on_match_id"
     t.index ["message_id"], name: "index_users_on_message_id"
@@ -285,6 +293,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_014310) do
   add_foreign_key "user_calendars", "users"
   add_foreign_key "users", "follows", column: "follows_id"
   add_foreign_key "users", "groups"
+  add_foreign_key "users", "interests"
   add_foreign_key "users", "likes"
   add_foreign_key "users", "matches"
   add_foreign_key "users", "messages"
