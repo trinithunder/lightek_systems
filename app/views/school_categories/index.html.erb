@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>School categories</h1>
+
+<div id="school_categories">
+  <% @school_categories.each do |school_category| %>
+    <%= render school_category %>
+    <p>
+      <%= link_to "Show this school category", school_category %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New school category", new_school_category_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_17_000121) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_17_001608) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -91,6 +91,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_000121) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "homeworks", force: :cascade do |t|
+    t.string "title"
+    t.string "due_date"
+    t.integer "user_id", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_homeworks_on_category_id"
+    t.index ["user_id"], name: "index_homeworks_on_user_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "to"
     t.integer "from"
@@ -147,6 +158,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_000121) do
     t.index ["question_id"], name: "index_quizzes_on_question_id"
   end
 
+  create_table "school_categories", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -179,6 +196,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_000121) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "cards", "users"
+  add_foreign_key "homeworks", "categories"
+  add_foreign_key "homeworks", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "quizzes", "questions"
   add_foreign_key "users", "follows", column: "follows_id"

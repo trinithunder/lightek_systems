@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :homeworks
+  resources :school_categories
   resources :quizzes
   resources :answers
   resources :questions
